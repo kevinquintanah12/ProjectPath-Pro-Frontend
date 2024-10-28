@@ -1,11 +1,10 @@
-/*
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      imports: [AppComponent],  // Cambiado de `declarations` a `imports`
     }).compileComponents();
   });
 
@@ -15,4 +14,3 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 });
-*/
