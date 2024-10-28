@@ -6,12 +6,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
 import { MatButtonModule } from '@angular/material/button'; 
 import { AppRoutingModule } from './app.routes'; 
-import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { AppComponent } from './app.component'; // Ahora solo se importa
 
 @NgModule({
   declarations: [
-    MainDashboardComponent // Solo declara componentes no standalone
   ],
   imports: [
     BrowserModule,
