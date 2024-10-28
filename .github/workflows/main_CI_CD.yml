@@ -20,13 +20,13 @@ jobs:
       - name: Test
         run: |
           npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-      - name: build angular, output in dist/unit-testing
+      - name: build angular, output in dist/cpm-system-front
         run: |
           CI=false npm run build
           
       - name: show dir
         run: |
-          ls -la dist/unit-testing/browser
+          ls -la dist/cpm-system-front/browser
       - name: download, run httpd image, container name serving_base
         run: |
           docker run -d --name serving_base httpd
@@ -36,7 +36,7 @@ jobs:
           
       - name: cp angular build to container
         run: |
-          docker cp dist/unit-testing/browser/.  serving_base:/usr/local/apache2/htdocs
+          docker cp dist/cpm-system-front/browser/.  serving_base:/usr/local/apache2/htdocs
           
       - name: list container
         run: |
