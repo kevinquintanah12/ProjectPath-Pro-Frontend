@@ -1,0 +1,84 @@
+/* header.component.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One:wght@400&display=swap');
+/* Estilos para el body */
+body {
+    margin: 0;
+    font-family: 'Passion One', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(135deg, #1444c7, #59aaf5);
+    background-size: 400% 400%;
+    animation: gradient-animation 10s ease infinite;
+}
+
+/* Animación de cambio de degradado */
+@keyframes gradient-animation {
+    25% {
+        background-position: 50% 50%;
+        background: linear-gradient(135deg, #0d99da, #0536d6);
+    }
+    50% {
+        background-position: 100% 50%;
+        background: linear-gradient(135deg, #23cbf5, #044cd3);
+    }
+    100% {
+        background-position: 0% 50%;
+        background: linear-gradient(135deg, #0e6ab6, #00c3ff); /* Vuelve al inicial */
+    }
+}
+
+/* Ajustes generales de tamaño de fuente */
+.logo-text {
+    font-size: 5vw; /* Cambia a vw para hacer el tamaño de la fuente responsivo */
+    max-font-size: 50px; /* Asegúrate de que no sea demasiado grande en pantallas grandes */
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: 'Rubik Mono One', sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 
+        0 0 10px rgb(30, 71, 204), 
+        0 0 20px rgb(15, 70, 253), 
+        0 0 30px rgba(0, 81, 255, 0.4), 
+        2px 2px 5px rgba(1, 132, 255, 0.7),  
+        3px 3px 10px rgb(0, 45, 82);
+}
+
+/* Media Queries para dispositivos pequeños */
+@media (max-width: 600px) {
+    .logo-text {
+        font-size: 6vw; /* Aumenta el tamaño para pantallas más pequeñas */
+    }
+}
+
+/* Animación de pulso */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 6px 20px rgba(1, 41, 48, 0.7), inset 0 0 15px rgba(0, 255, 255, 0.5);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(1, 33, 39, 0.8), inset 0 0 20px rgba(0, 255, 255, 0.7);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 6px 20px rgb(255, 255, 255), inset 0 0 15px rgba(0, 255, 255, 0.5);
+    }
+}
+
+/* Contenedor para el logo */
+.logo-container {
+    text-align: center; /* Centra el texto dentro del contenedor */
+    display: flex; /* Usar flexbox */
+    flex-direction: column; /* Organiza los elementos en columna */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    height: 100vh; /* Ocupar toda la altura del viewport */
+}
+
+/* Resto de tu CSS sigue igual... */
