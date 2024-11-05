@@ -1,0 +1,89 @@
+/* Importar la fuente Bowlby One */
+@import url('https://fonts.googleapis.com/css2?family=Bowlby+One&display=swap');
+
+/* Header container styling */
+.header-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Mantener la dirección de columna para el header */
+    align-items: center; /* Alinea los elementos al centro */
+    position: fixed; /* Mantener el header fijo en la parte superior */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Asegura que el header esté por encima de otros elementos */
+    padding: 10px 0;
+    background: rgb(255, 255, 255); /* Fondo semitransparente */
+    backdrop-filter: blur(10px); /* Desenfoque para efecto de vidrio */
+    box-shadow: 0px 4px 10px rgba(2, 48, 116, 0.3); /* Sombra hacia abajo */
+}
+
+/* Button container styling */
+.button-container {
+    display: flex;
+    width: 100%; /* Cambia a 100% para adaptarse a la pantalla */
+    max-width: 550px; /* Limita el ancho máximo */
+    height: auto; /* Permitir que la altura se ajuste automáticamente */
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 10px;
+    flex-wrap: nowrap; /* Mantener los botones en una sola fila */
+}
+
+/* Button styling */
+.button {
+    outline: 0 !important;
+    border: 0 !important;
+    flex: 1; /* Hace que los botones crezcan y se contraigan */
+    min-width: 100px; /* Ancho mínimo para los botones */
+    height: 50px; /* Aumenta el tamaño según sea necesario */
+    border-radius: 10px; /* Botón con bordes redondeados */
+    background-color: transparent;
+    color: rgb(13, 94, 201); /* Cambia el color del texto según sea necesario */
+    font-family: "Bowlby One", sans-serif; /* Aplicar la fuente */
+    font-size: 20px; /* Asegúrate de incluir la unidad 'px' */
+    font-weight: 700; /* Si deseas un texto más audaz */
+    font-style: normal;
+    transition: all ease-in-out 0.3s;
+    cursor: pointer;
+}
+
+/* Button hover effect */
+.button:hover {
+    transform: translateY(-3px);
+}
+
+/* Body margin to prevent overlap with header */
+body {
+    margin-top: 70px; /* Ajusta este valor según la altura del header */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .header-container {
+        padding: 3px 0; /* Reducir el padding */
+        position: fixed; /* Mantener la posición fija */
+    }
+
+    .button-container {
+        flex-wrap: nowrap; /* Asegurar que los botones no se apilen */
+        width: 100%; /* Hacer que el ancho sea más flexible */
+        margin: 0 auto; /* Centrar el contenedor de botones */
+    }
+
+    .button {
+        min-width: 80px; /* Cambiar el ancho mínimo si es necesario */
+        margin: 0 5px; /* Espaciado entre botones */
+    }
+}
+
+/* Estilos adicionales para pantallas más pequeñas */
+@media (max-width: 480px) {
+    .button {
+        font-size: 14px; /* Reducir el tamaño de fuente en pantallas pequeñas */
+        min-width: 70px; /* Ancho mínimo más pequeño para botones en pantallas pequeñas */
+    }
+
+    body {
+        margin-top: 60px; /* Ajustar el margen del cuerpo */
+    }
+}
