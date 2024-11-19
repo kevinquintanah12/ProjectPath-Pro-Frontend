@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REGISTRARSE</title>
+  <!-- Fuente Roboto -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="col-md-6 left-column">
+        <!-- Imagen como fondo de toda la pantalla -->
+        <img src="./login.jpg" alt="Background Image" class="img-fluid">
+      </div>
+      <div class="col-md-6 right-column">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">REGÍSTRATE</h5>
+            <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="onRegisterButtonClicked()">
+              <div class="form-group">
+                <label for="inputUsername" [ngClass]="{'required': checkField(registerForm.get('username')) }">Usuario</label>
+                <input type="text" class="form-control rounded" id="inputUsername" placeholder="Ingresa un nombre de usuario" formControlName="username" [ngClass]="{'is-invalid': checkField(registerForm.get('username'))}">
+              </div>
+
+              <div class="form-group">
+                <label for="inputEmail" [ngClass]="{'required': checkField(registerForm.get('email')) }">Correo Electrónico</label>
+                <input type="email" class="form-control rounded" id="inputEmail" placeholder="Ingresa tu correo electrónico" formControlName="email" [ngClass]="{'is-invalid': checkField(registerForm.get('email'))}">
+              </div>
+
+              <div class="form-group">
+                <label for="inputPassword" [ngClass]="{'required': checkField(registerForm.get('password')) }">Contraseña</label>
+                <input type="password" class="form-control rounded" id="inputPassword" placeholder="Ingresa tu contraseña" formControlName="password" [ngClass]="{'is-invalid': checkField(registerForm.get('password'))}">
+              </div>
+
+              <div class="form-group">
+                <label for="inputConfirmPassword" [ngClass]="{'required': checkField(registerForm.get('confirmPassword')) }">Confirmar Contraseña</label>
+                <input type="password" class="form-control rounded" id="inputConfirmPassword" placeholder="Confirma tu contraseña" formControlName="confirmPassword" [ngClass]="{'is-invalid': checkField(registerForm.get('confirmPassword'))}">
+              </div>
+
+              <!-- Mensaje de error -->
+              <div *ngIf="error" class="alert alert-danger" role="alert">
+                <strong>Error:</strong> {{ error }}
+              </div>
+
+              <!-- Botón de envío -->
+              <button id="submitButton" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" [disabled]="registerForm.invalid || processing">
+                {{ processing ? 'Registrando...' : 'Registrarse' }}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

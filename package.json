@@ -13,7 +13,7 @@
     "@angular/animations": "^18.2.0",
     "@angular/cdk": "^18.2.10",
     "@angular/common": "^18.2.0",
-    "@angular/compiler": "^18.2.0",
+    "@angular/compiler": "^18.2.11",
     "@angular/core": "^18.2.0",
     "@angular/forms": "^18.2.0",
     "@angular/material": "^18.2.10",
@@ -38,11 +38,10 @@
     "typescript": "~5.5.2"
   },
   "budgets": [
-  {
-    "type": "initial",
-    "maximumWarning": "6kb",
-    "maximumError": "10kb"
-  }
-]
-
+    {
+      "type": "initial",
+      "maximumWarning": "6kb",
+      "maximumError": "10kb"
+    }
+  ]
 }
