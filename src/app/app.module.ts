@@ -6,11 +6,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
 import { MatButtonModule } from '@angular/material/button'; 
 import { AppRoutingModule } from './app.routes'; 
-import { AppComponent } from './app.component'; // Ahora solo se importa
+import { AppComponent } from './app.component';  // Solo importado, no declarado
+import { LoginComponent } from './login/login.component';  // Solo importado, no declarado
+import { RegisterComponent } from './register/register.component';  // Solo importado, no declarado
+
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -19,9 +23,14 @@ import { AppComponent } from './app.component'; // Ahora solo se importa
     MatToolbarModule,
     MatButtonModule,
     AppRoutingModule,
-    // No necesitas incluir AppComponent aquí, ya que es standalone
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppComponent,  // Importar directamente como standalone
+    LoginComponent, // Importar directamente como standalone
+    RegisterComponent
   ],
   providers: [],
-  bootstrap: [AppComponent] // Esto sigue igual
+  bootstrap: [AppComponent] // El componente standalone sigue siendo bootstrap
 })
 export class AppModule {}

@@ -1,14 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component'; // Asegúrate de que la ruta sea correcta
+import { SeccionInicioComponent } from './seccion-inicio/seccion-inicio.component'; // Asegúrate de que la ruta sea correcta
+import { RegisterComponent } from './register/register.component';  // Solo importado, no declarado
 
-const routes: Routes = [
-  { path: '',   }, // Ruta predeterminada
-  // Aquí puedes agregar más rutas si es necesario
+export const routes: Routes = [
+  { path: '', redirectTo: '/inicio', pathMatch: 'full' }, // Redirige a la sección de inicio si la ruta está vacía
+  { path: 'inicio', component: SeccionInicioComponent }, // Ruta para el componente de inicio
+  { path: 'login', component: LoginComponent }, // Ruta para el componente de inicio de sesión
+  { path: 'register', component: RegisterComponent }, // Ruta para el componente de inicio de sesión
+
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)], // Configura el RouterModule con las rutas
+  exports: [RouterModule] // Exporta RouterModule para que esté disponible en toda la aplicación
 })
-export class AppRoutingModule { }
-
+export class AppRoutingModule {}
