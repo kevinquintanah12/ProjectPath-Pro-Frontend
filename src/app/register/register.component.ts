@@ -1,64 +1,67 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router'; // Importa el Router para la navegación
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from '../models/user/User';
+import { UserService } from '../services/user.service';
+import { StorageService } from '../services/storage.service';
+import { Credential } from '../models/user/Credential';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule]
+  styleUrls: ['./register.component.css']
+  
 })
-export class RegisterComponent implements OnInit {
-  registerForm!: FormGroup;
-  error: string = '';
-  processing: boolean = false;
+export class RegisterComponent {
+  user: User = {
+    id: 0,
+    username: '',
+    email: '',
+    password: ''
+  };
 
-  constructor(private fb: FormBuilder, private router: Router) {} // Inyecta el Router
+  errorMessage: string = '';
+  successMessage: string = '';
 
-  ngOnInit(): void {
-    this.registerForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
-    }, { 
-      validators: this.passwordMatchValidator 
-    });
-  }
+  constructor(
+    private userService: UserService,
+    private storageService: StorageService,
+    private router: Router
+  ) {}
 
-  // Validador para comprobar que las contraseñas coinciden
-  passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
-    const password = control.get('password')?.value;
-    const confirmPassword = control.get('confirmPassword')?.value;
-
-    return password && confirmPassword && password !== confirmPassword
-      ? { 'passwordMismatch': true }
-      : null;
-  }
-
-  checkField(field: AbstractControl | null): boolean {
-    if (!field) {
-      return false; // Si field es null o undefined, retornamos false
-    }
-    return field.invalid && field.touched;
-  }
-
-  // Método para manejar el registro
-  onRegisterButtonClicked(): void {
-    if (this.registerForm.invalid) {
-      this.error = 'Por favor, completa todos los campos obligatorios correctamente.';
+  /**
+   * Register a new user
+   */
+  register() {
+    if (!this.user.username || !this.user.email || !this.user.password) {
+      this.errorMessage = 'Todos los campos son obligatorios.';
       return;
     }
 
-    this.processing = true;
-    setTimeout(() => {
-      this.processing = false;
-      console.log('Formulario enviado:', this.registerForm.value);
-      // Redirigir a /login tras el registro exitoso
-      this.router.navigate(['/login']);
-    }, 2000); // Simula un retraso de 2 segundos para la respuesta
+    this.userService.createUser(this.user).subscribe({
+      next: (token) => {
+        // Almacenar el token en localStorage
+        this.storageService.setLocal('authToken', token.accessToken);
+        this.storageService.setLocal('refreshToken', token.refreshToken);
+
+        this.successMessage = 'Usuario registrado exitosamente. Redirigiendo...';
+
+        // Redirigir al usuario
+        setTimeout(() => {
+          this.router.navigate(['/dashboard']);
+        }, 2000);
+      },
+      error: (err) => {
+        console.error('Error en el registro:', err);
+        this.errorMessage = 'Ocurrió un error durante el registro. Intenta nuevamente.';
+      }
+    });
+  }
+
+  /**
+   * Limpiar mensajes de error y éxito
+   */
+  clearMessages() {
+    this.errorMessage = '';
+    this.successMessage = '';
   }
 }
