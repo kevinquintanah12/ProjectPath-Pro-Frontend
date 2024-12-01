@@ -4,57 +4,73 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>REGISTRARSE</title>
-  <!-- Fuente Roboto -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./register.component.css">
 </head>
 <body>
-
   <div class="container">
     <div class="row no-gutters">
-      <div class="col-md-6 left-column">
-        <!-- Imagen como fondo de toda la pantalla -->
-        <img src="./login.jpg" alt="Background Image" class="img-fluid">
-      </div>
+      <div class="col-md-6 left-column"></div> <!-- Imagen de fondo -->
       <div class="col-md-6 right-column">
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">REGÍSTRATE</h5>
-            <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="onRegisterButtonClicked()">
+            <form class="form-signin" (ngSubmit)="register()">
               <div class="form-group">
-                <label for="inputUsername" [ngClass]="{'required': checkField(registerForm.get('username')) }">Usuario</label>
-                <input type="text" class="form-control rounded" id="inputUsername" placeholder="Ingresa un nombre de usuario" formControlName="username" [ngClass]="{'is-invalid': checkField(registerForm.get('username'))}">
+                <label for="inputUsername">Usuario</label>
+                <input 
+                  type="text" 
+                  id="inputUsername" 
+                  class="form-control" 
+                  placeholder="Ingresa un nombre de usuario" 
+                  [(ngModel)]="user.username" 
+                  name="username" 
+                  required>
               </div>
-
+  
               <div class="form-group">
-                <label for="inputEmail" [ngClass]="{'required': checkField(registerForm.get('email')) }">Correo Electrónico</label>
-                <input type="email" class="form-control rounded" id="inputEmail" placeholder="Ingresa tu correo electrónico" formControlName="email" [ngClass]="{'is-invalid': checkField(registerForm.get('email'))}">
+                <label for="inputEmail">Correo Electrónico</label>
+                <input 
+                  type="email" 
+                  id="inputEmail" 
+                  class="form-control" 
+                  placeholder="Ingresa tu correo electrónico" 
+                  [(ngModel)]="user.email" 
+                  name="email" 
+                  required>
               </div>
-
+  
               <div class="form-group">
-                <label for="inputPassword" [ngClass]="{'required': checkField(registerForm.get('password')) }">Contraseña</label>
-                <input type="password" class="form-control rounded" id="inputPassword" placeholder="Ingresa tu contraseña" formControlName="password" [ngClass]="{'is-invalid': checkField(registerForm.get('password'))}">
+                <label for="inputPassword">Contraseña</label>
+                <input 
+                  type="password" 
+                  id="inputPassword" 
+                  class="form-control" 
+                  placeholder="Ingresa tu contraseña de mínimo 6 caracteres" 
+                  [(ngModel)]="user.password" 
+                  name="password" 
+                  required>
               </div>
 
-              <div class="form-group">
-                <label for="inputConfirmPassword" [ngClass]="{'required': checkField(registerForm.get('confirmPassword')) }">Confirmar Contraseña</label>
-                <input type="password" class="form-control rounded" id="inputConfirmPassword" placeholder="Confirma tu contraseña" formControlName="confirmPassword" [ngClass]="{'is-invalid': checkField(registerForm.get('confirmPassword'))}">
-              </div>
-
-              <!-- Mensaje de error -->
-              <div *ngIf="error" class="alert alert-danger" role="alert">
-                <strong>Error:</strong> {{ error }}
-              </div>
-
-              <!-- Botón de envío -->
-              <button id="submitButton" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" [disabled]="registerForm.invalid || processing">
-                {{ processing ? 'Registrando...' : 'Registrarse' }}
+              <button 
+                id="submitButton" 
+                class="btn btn-lg btn-primary btn-block text-uppercase" 
+                type="submit">
+                Registrarse
               </button>
+  
+              <!-- Mensajes de éxito o error -->
+              <div *ngIf="errorMessage" class="alert alert-danger mt-3" role="alert">
+                {{ errorMessage }}
+              </div>
+              <div *ngIf="successMessage" class="alert alert-success mt-3" role="alert">
+                {{ successMessage }}
+              </div>
             </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </body>
 </html>

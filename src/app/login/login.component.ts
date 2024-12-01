@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { UserService } from '../services/user.service';
+import { StorageService } from '../services/storage.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,40 +12,64 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule]
 })
-export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
+
+export class LoginComponent {
+  loginForm: FormGroup;
   error: string = '';
   processing: boolean = false;
 
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit(): void {
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private storageService: StorageService,
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
-  checkField(field: AbstractControl | null): boolean {
-    if (!field) {
-      return false; // Si field es null o undefined, retornamos false
-    }
-    return field.invalid && field.touched;
+  /**
+   * Verifica si un campo tiene errores después de interactuar con él.
+   * @param control FormControl
+   * @returns boolean
+   */
+  checkField(control: any): boolean {
+    return control?.invalid && control?.touched;
   }
 
-  onSubmitButtonClicked(): void {
+  /**
+   * Inicia el proceso de inicio de sesión
+   */
+  onSubmitButtonClicked() {
+    this.error = '';
     if (this.loginForm.invalid) {
-      this.error = 'Por favor, completa todos los campos obligatorios.';
+      this.loginForm.markAllAsTouched();
       return;
     }
 
-    console.log('Formulario enviado:', this.loginForm.value);
-
     this.processing = true;
-    setTimeout(() => {
-      this.processing = false;
-      // Simulando un error de validación
-      this.error = 'Error al iniciar sesión. Verifica tus credenciales.';
-    }, 2000);
+
+    const credentials = this.loginForm.value;
+
+    this.userService.tokenAuth(credentials).subscribe({
+      next: (token) => {
+        // Almacenar tokens en el StorageService
+        this.storageService.setLocal('authToken', token.accessToken);
+        this.storageService.setLocal('refreshToken', token.refreshToken);
+
+        // Redirigir al usuario al dashboard
+        this.router.navigate(['/dashboard']);
+      },
+      error: (err) => {
+        console.error('Error en el inicio de sesión:', err);
+        this.error = 'Usuario o contraseña incorrectos.';
+        this.processing = false;
+      },
+      complete: () => {
+        this.processing = false;
+      }
+    });
   }
 }

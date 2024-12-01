@@ -9,12 +9,15 @@ import { AppRoutingModule } from './app.routes';
 import { AppComponent } from './app.component';  // Solo importado, no declarado
 import { LoginComponent } from './login/login.component';  // Solo importado, no declarado
 import { RegisterComponent } from './register/register.component';  // Solo importado, no declarado
-
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
+
+  declarations: [
+    RegisterComponent // Aquí, en 'declarations'
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -28,9 +31,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     AppComponent,  // Importar directamente como standalone
     LoginComponent, // Importar directamente como standalone
-    RegisterComponent
+    
   ],
   providers: [],
-  bootstrap: [AppComponent] // El componente standalone sigue siendo bootstrap
+  bootstrap: [AppComponent, ] // El componente standalone sigue siendo bootstrap
 })
 export class AppModule {}
