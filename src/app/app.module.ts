@@ -15,6 +15,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CrearproyectoComponent } from './crearproyecto/crearproyecto.component';  // Solo importado, no declarado
 import { CrearDesdeCeroComponent } from './creardesdecero/creardesdecero.component';
 import { CrearConArchivoComponent } from './crearconarchivo/crearconarchivo.component';
+import { DashboardcpmComponent } from './dashboardcpm/dashboardcpm.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // Importa el módulo
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
 
@@ -36,10 +40,15 @@ import { CrearConArchivoComponent } from './crearconarchivo/crearconarchivo.comp
     LoginComponent, // Importar directamente como standalone
     CrearproyectoComponent,
     CrearDesdeCeroComponent,
-    CrearConArchivoComponent
+    CrearConArchivoComponent,
+    DashboardcpmComponent,
+    MatSidenavModule,
+    MatIconModule
     
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent, ] // El componente standalone sigue siendo bootstrap
 })
 export class AppModule {}

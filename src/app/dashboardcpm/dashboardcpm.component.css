@@ -1,0 +1,231 @@
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;300;400;500;700;900&display=swap');
+
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Rubik Mono One', sans-serif;
+    background: linear-gradient(to right, #e0f7fa, #ffffff67); /* Fondo degradado */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 80px auto 40px; /* Mueve el contenido hacia abajo */
+    padding: 40px;
+    font-family: 'DM Sans', sans-serif;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.452); /* Fondo suave */
+    border-radius: 20px;
+    box-shadow: 0 8px 50px rgba(0, 0, 0, 0.2); /* Sombra más grande y suave */
+    transition: box-shadow 0.3s ease-in-out;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Efecto de sombra animada */
+.dashboard-container:hover {
+    box-shadow: 0 12px 70px rgba(0, 0, 0, 0.3); /* Aumenta la sombra al pasar el mouse */
+}
+
+/* Título */
+.title {
+    font-size: 2.5rem;
+    font-family: 'Rubik Mono One', sans-serif;
+    color: #007BFF;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+/* Botón de menú para abrir/cerrar el drawer */
+.menu-button {
+    position: absolute;
+    margin: 80px auto 40px; /* Mueve el contenido hacia abajo */
+
+    left: 20px;
+    z-index: 2;
+    border: none;
+}
+
+.mat-icon {
+    color: #007BFF;
+    font-size: 30px;
+}
+
+/* Estilo para el drawer */
+/* Estilo para el contenido dentro del sidenav */
+.mat-sidenav {
+    font-family: 'DM Sans', sans-serif; /* Aplica DM Sans */
+    font-size: 12px; /* Tamaño de fuente pequeño */
+    color: #333; /* Color del texto */
+    padding: 15px; /* Ajusta el espaciado interno */
+}
+
+/* Estilo para los elementos dentro del sidenav (como los títulos y los botones) */
+.mat-sidenav h3 {
+    font-size: 14px; /* Tamaño de fuente ligeramente mayor para los títulos */
+    margin-bottom: 10px; /* Espacio debajo del título */
+    font-weight: bold; /* Resalta los títulos */
+}
+
+.project-item {
+    font-size: 12px; /* Tamaño pequeño para los ítems de proyectos */
+    padding: 10px; /* Ajusta el padding dentro de los elementos */
+    color: #333; /* Color del texto */
+}
+
+.project-item h3 {
+    font-size: 14px; /* Tamaño de fuente ligeramente mayor para los títulos de los proyectos */
+}
+
+.project-item p {
+    font-size: 12px; /* Tamaño de fuente pequeño para la descripción */
+}
+
+.btn-edit {
+    font-size: 12px; /* Tamaño de fuente pequeño para el botón de editar */
+    padding: 6px 12px; /* Ajusta el tamaño del botón */
+}
+
+
+
+.title:hover {
+    transform: scale(1.1); /* Efecto sutil de animación al pasar el mouse */
+    color: #0056b3; /* Cambio de color al pasar el mouse */
+}
+
+/* Glassmorphism Style */
+.glassmorphism {
+    font-family: 'DM Sans', sans-serif;
+    background: rgba(255, 255, 255, 0.685);
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.glassmorphism:hover {
+    box-shadow: 0 6px 50px rgba(0, 0, 0, 0.15); /* Sombra al pasar el mouse */
+}
+
+/* Sección de información del proyecto */
+.project-info h2 {
+    font-family: 'Rubik Mono One', sans-serif;
+    color: #28a745;
+}
+
+/* Detalles del proyecto */
+.project-details ul {
+    font-family: 'DM Sans', sans-serif;
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+}
+
+.project-details li {
+    font-family: 'DM Sans', sans-serif;
+    margin: 10px 0;
+}
+
+/* Animación de desplazamiento y desvanecimiento */
+.section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Sección de Diagramas */
+.diagram-section h2 {
+    font-family: 'DM Sans', sans-serif;
+    color: #007BFF;
+}
+
+.diagram-container {
+    margin-top: 20px;
+}
+
+.diagram-placeholder {
+    font-family: 'DM Sans', sans-serif;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 10px;
+}
+
+
+/* Botón de editar */
+.btn-edit {
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); /* Animación de escala en hover */
+}
+
+/* Estilo para la tabla de actividades */
+.activities-table {
+    width: 100%;
+    font-family: 'DM Sans', sans-serif;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.9); /* Fondo claro para la tabla */
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease;
+}
+
+.activities-table:hover {
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Sombra animada en hover */
+}
+
+.activities-table th, .activities-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.activities-table th {
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+}
+
+.activities-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.activities-table tr:hover {
+    background-color: #e0f7fa;
+}
+
+.activities-table td {
+    color: #333;
+}
+
+/* Ajuste del glassmorphism en tablas */
+.glassmorphism-table {
+    padding: 30px;
+    margin-bottom: 20px;
+}
