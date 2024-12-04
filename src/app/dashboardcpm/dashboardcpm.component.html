@@ -1,0 +1,78 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #drawer mode="side" [(opened)]="isDrawerOpen">
+      <h3>Proyectos Cargados Anteriormente</h3>
+      <div class="project-list">
+        <div *ngFor="let project of previousProjects" class="project-item">
+          <h3>Proyectos Cargados Anteriormente</h3>
+
+          <h3>{{ project.name }}</h3>
+          <p>Fecha de creación: {{ project.creationDate }}</p>
+          <button class="btn-edit" (click)="editProject(project.name)">Editar</button>
+        </div>
+      </div>
+    </mat-sidenav>
+  
+    <!-- Botón para abrir/cerrar el sidenav -->
+    <button mat-icon-button (click)="isDrawerOpen = !isDrawerOpen" class="menu-button">
+      <mat-icon>{{ isDrawerOpen ? 'close' : 'menu' }}</mat-icon>
+    </button>
+  
+    <!-- Contenido principal -->
+    <div class="dashboard-container">
+      <h1 class="title">CPM DASHBOARD</h1>
+  
+      <!-- Sección de información del proyecto -->
+      <div class="project-info glassmorphism">
+        <h2>Información del Proyecto</h2>
+        <p>Al cargar la información, el sistema generará automáticamente la red del proyecto y calculará la ruta crítica.</p>
+        <div class="project-details">
+          <ul>
+            <li><strong>Nombre:</strong> Proyecto XYZ</li>
+            <li><strong>Descripción:</strong> Este proyecto tiene como objetivo optimizar los procesos internos de la empresa.</li>
+          </ul>
+  
+          <!-- Tabla de actividades -->
+          <table class="activities-table">
+            <thead>
+              <tr>
+                <th>Actividad</th>
+                <th>Descripción</th>
+                <th>Actividad Precedente</th>
+                <th>Tiempo (días)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>A1</td>
+                <td>Inicio del proyecto</td>
+                <td>-</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>A2</td>
+                <td>Recolección de datos</td>
+                <td>A1</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>A3</td>
+                <td>Análisis de datos</td>
+                <td>A2</td>
+                <td>7</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  
+      <!-- Diagrama visual -->
+      <div class="diagram-section glassmorphism">
+        <h2>Diagrama Visual</h2>
+        <div class="diagram-container">
+          <!-- Aquí se integrará el diagrama de la red del proyecto -->
+          <img src="assets/placeholder-diagram.png" alt="Diagrama Visual del Proyecto" class="diagram-placeholder" />
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-container>
+  
