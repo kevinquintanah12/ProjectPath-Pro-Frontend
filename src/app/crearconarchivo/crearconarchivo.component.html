@@ -1,0 +1,74 @@
+<div class="container">
+    <!-- Formulario -->
+    <div class="form-container">
+      <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+        <!-- Nombre del Proyecto -->
+        <div>
+          <label for="name">Nombre del Proyecto</label>
+          <input
+            id="name"
+            formControlName="name"
+            type="text"
+            placeholder="Nombre del Proyecto"
+          />
+        </div>
+  
+        <!-- Descripción -->
+        <div>
+          <label for="description">Descripción</label>
+          <textarea
+            id="description"
+            formControlName="description"
+            placeholder="Descripción del Proyecto"
+          ></textarea>
+        </div>
+  
+        <!-- Botón de continuar -->
+        <button
+          type="submit"
+          [disabled]="!projectForm.valid || !fileName"
+        >
+          Continuar
+        </button>
+      </form>
+    </div>
+  
+    <!-- Tabla de vista previa del archivo Excel -->
+    <div class="excel-preview">
+      <div class="file-info" *ngIf="fileName">
+        <p><strong>Archivo:</strong> {{ fileName }}</p>
+  
+        <!-- Previsualización editable del archivo Excel -->
+        <div *ngIf="excelPreview && excelPreview.length > 0">
+          <h3></h3>
+  
+          <div *ngIf="excelPreview.length > 0; else noData">
+            <table class="excel-table">
+              <thead>
+                <tr>
+                  <th *ngFor="let header of excelPreview[0]">{{ header }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let row of excelPreview.slice(1); let rowIndex = index">
+                  <td
+                    *ngFor="let cell of row; let cellIndex = index"
+                    contenteditable="true"
+                    (focus)="onCellFocus($event)"
+                    (blur)="updateCell(rowIndex + 1, cellIndex, $event)"
+                  >
+                    {{ cell }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+  
+          <ng-template #noData>
+            <p>No se cargaron datos del archivo.</p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+  

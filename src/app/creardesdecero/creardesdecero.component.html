@@ -1,0 +1,16 @@
+<div class="form-container">
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="name">Nombre del Proyecto</label>
+        <input id="name" formControlName="name" type="text" placeholder="Nombre del Proyecto" />
+      </div>
+  
+      <div>
+        <label for="description">Descripción</label>
+        <textarea id="description" formControlName="description" placeholder="Descripción del Proyecto"></textarea>
+      </div>
+  
+      <button type="submit" [disabled]="!projectForm.valid">Continuar</button>
+    </form>
+  </div>
+  

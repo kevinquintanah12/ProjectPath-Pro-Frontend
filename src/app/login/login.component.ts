@@ -60,7 +60,7 @@ export class LoginComponent {
         this.storageService.setLocal('refreshToken', token.refreshToken);
 
         // Redirigir al usuario al dashboard
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/seccioncrear']);
       },
       error: (err) => {
         console.error('Error en el inicio de sesión:', err);

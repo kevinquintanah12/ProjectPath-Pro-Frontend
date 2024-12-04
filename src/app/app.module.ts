@@ -12,6 +12,9 @@ import { RegisterComponent } from './register/register.component';  // Solo impo
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CrearproyectoComponent } from './crearproyecto/crearproyecto.component';  // Solo importado, no declarado
+import { CrearDesdeCeroComponent } from './creardesdecero/creardesdecero.component';
+import { CrearConArchivoComponent } from './crearconarchivo/crearconarchivo.component';
 
 @NgModule({
 
@@ -31,6 +34,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     AppComponent,  // Importar directamente como standalone
     LoginComponent, // Importar directamente como standalone
+    CrearproyectoComponent,
+    CrearDesdeCeroComponent,
+    CrearConArchivoComponent
     
   ],
   providers: [],

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opciones de Proyecto</title>
+    <link rel="stylesheet" href="crearproyecto.component.css">
+</head>
+<body>
+    <section class="opciones-proyecto">
+        <div class="opcion">
+            <h2>Cargar Archivo XLSX</h2>
+            <p>Sube un archivo Excel para crear tu proyecto automáticamente.</p>
+            <!-- Input tipo archivo, oculto y estilizado -->
+            <label for="file-upload" class="btn-opcion">
+                Cargar Archivo
+            </label>
+            <input type="file" id="file-upload" style="display: none;" accept=".xlsx,.xls" (change)="onFileChange($event)" />
+        </div>
+        <div class="opcion">
+            <h2>Crear Desde Cero</h2>
+            <p>Inicia un nuevo proyecto y organiza todas las tareas manualmente.</p>
+            <button class="btn-opcion" (click)="redirectToCrearDesdeCero()">Crear Proyecto</button>
+
+        </div>
+    </section>
+</body>
+</html>
