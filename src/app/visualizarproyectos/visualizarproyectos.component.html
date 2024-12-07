@@ -1,0 +1,24 @@
+<section class="project-table">
+    <h2>Tus Proyectos</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let proyecto of proyectos">
+          <td>{{ proyecto.id }}</td>
+          <td>{{ proyecto.nombre }}</td>
+          <td>{{ proyecto.descripcion }}</td>
+          <td>
+            <button (click)="irAProyecto(proyecto.id)">Ver Proyecto</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  

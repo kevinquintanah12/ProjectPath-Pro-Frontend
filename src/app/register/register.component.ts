@@ -40,14 +40,14 @@ export class RegisterComponent {
     this.userService.createUser(this.user).subscribe({
       next: (token) => {
         // Almacenar el token en localStorage
-        this.storageService.setLocal('authToken', token.accessToken);
-        this.storageService.setLocal('refreshToken', token.refreshToken);
+        this.storageService.setLocal('authToken', token.access_token);
+        this.storageService.setLocal('refreshToken', token.refresh_token);
 
         this.successMessage = 'Usuario registrado exitosamente. Redirigiendo...';
 
         // Redirigir al usuario
         setTimeout(() => {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/login']);
         }, 2000);
       },
       error: (err) => {

@@ -1,7 +1,9 @@
 /* header.component.css */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;300;400;500;700;900&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One:wght@400&display=swap');
 /* Estilos para el body */
+/* Estilo general para el body */
 body {
     margin: 0;
     font-family: 'Passion One', sans-serif;
@@ -27,14 +29,76 @@ body {
     }
     100% {
         background-position: 0% 50%;
-        background: linear-gradient(135deg, #0e6ab6, #00c3ff); /* Vuelve al inicial */
+        background: linear-gradient(135deg, #0e6ab6, #00c3ff);
     }
 }
+/* Sidebar en la esquina */
+.sidenav {
+    position: fixed;
+    top: 90px; /* Distancia desde la parte superior */
+    right: 20px; /* Distancia desde el borde derecho */
+    width: 230px; /* Hacerlo más estrecho */
+    background: rgba(255, 255, 255, 0.1); /* Fondo transparente */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    color: #fff;
+    padding: 15px;
+    box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 16px; /* Esquinas redondeadas */
+}
 
-/* Ajustes generales de tamaño de fuente */
+/* Información del usuario */
+.user-info {
+    margin-bottom: 15px; /* Reduce el espacio entre la información */
+    color: #fff;
+}
+
+.username {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px; /* Fuente más pequeña */
+    font-weight: bold;
+    line-height: 1.2; /* Reduce el espacio entre líneas */
+}
+
+/* Estilo para el botón en el sidebar */
+.sidebar-button {
+    font-family: 'DM Sans', sans-serif;
+
+    width: 100%;
+    padding: 10px; /* Hace que los botones sean más pequeños */
+    background-color: #103764;
+    color: #fff;
+    border: none;
+    font-size: 13px; /* Fuente más pequeña */
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 8px; /* Añade espacio entre los botones */
+}
+
+.sidebar-button:hover {
+    background-color: #35e0d7;
+}
+
+
+/* Estilos para el logo y el contenido */
+.dashboard-container {
+    flex: 1;
+    padding: 20px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+/* Contenedor para el logo */
+.logo-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Ocupa toda la altura del viewport */
+}
+
+/* Logo */
 .logo-text {
-    font-size: 5vw; /* Cambia a vw para hacer el tamaño de la fuente responsivo */
-    max-font-size: 50px; /* Asegúrate de que no sea demasiado grande en pantallas grandes */
+    font-size: 5vw;
+    max-font-size: 50px;
     color: #ffffff;
     text-transform: uppercase;
     font-family: 'Rubik Mono One', sans-serif;
@@ -70,15 +134,3 @@ body {
         box-shadow: 0 6px 20px rgb(255, 255, 255), inset 0 0 15px rgba(0, 255, 255, 0.5);
     }
 }
-
-/* Contenedor para el logo */
-.logo-container {
-    text-align: center; /* Centra el texto dentro del contenedor */
-    display: flex; /* Usar flexbox */
-    flex-direction: column; /* Organiza los elementos en columna */
-    justify-content: center; /* Centra verticalmente */
-    align-items: center; /* Centra horizontalmente */
-    height: 100vh; /* Ocupar toda la altura del viewport */
-}
-
-/* Resto de tu CSS sigue igual... */

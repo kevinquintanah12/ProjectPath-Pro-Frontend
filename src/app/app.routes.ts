@@ -8,6 +8,8 @@ import { CrearDesdeCeroComponent } from './creardesdecero/creardesdecero.compone
 import { SeccionCrearComponent } from './seccion-crear/seccion-crear.component';
 import { CrearConArchivoComponent } from './crearconarchivo/crearconarchivo.component';
 import { DashboardcpmComponent } from './dashboardcpm/dashboardcpm.component';
+import { VisualizarproyectosComponent } from './visualizarproyectos/visualizarproyectos.component';
+import { CrearactividadesComponent } from './crearactividades/crearactividades.component';
 
 
 export const routes: Routes = [
@@ -22,6 +24,8 @@ export const routes: Routes = [
   { path: 'creardesdecero', component: CrearDesdeCeroComponent }, // Ruta para el componente de inicio de sesión
   { path: 'crearconarchivo', component: CrearConArchivoComponent }, // Ruta para el componente de inicio de sesión
   { path: 'dashboard', component: DashboardcpmComponent }, // Ruta para el componente de inicio de sesión
+  { path: 'seccionvisualizar', component: VisualizarproyectosComponent }, // Ruta para el componente de inicio de sesión
+  { path: 'crearactividades', component: CrearactividadesComponent }, // Ruta para el componente de inicio de sesión
 
 
 ];

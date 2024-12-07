@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../services/user.service';
-import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
+import { TokenService } from '../services/TokenService';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +13,6 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule]
 })
-
 export class LoginComponent {
   loginForm: FormGroup;
   error: string = '';
@@ -21,8 +21,8 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private storageService: StorageService,
-    private router: Router
+    private router: Router,
+    private tokenService: TokenService // Agregado aquí
   ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.email]],
@@ -54,13 +54,21 @@ export class LoginComponent {
     const credentials = this.loginForm.value;
 
     this.userService.tokenAuth(credentials).subscribe({
-      next: (token) => {
-        // Almacenar tokens en el StorageService
-        this.storageService.setLocal('authToken', token.accessToken);
-        this.storageService.setLocal('refreshToken', token.refreshToken);
+      next: (response) => {
+        console.log('Respuesta completa del backend:', response);
+
+        // Guardar el token en el TokenService
+        this.tokenService.setToken(response.access_token);
+        this.tokenService.setToken(response.access_token); // Guardar el token en TokenService
+
+        // Guardar el token y el email en localStorage
+        localStorage.setItem('authToken', response.access_token); // Guardar el token con la clave authToken
+        
+        // Guardar el email en localStorage
+        localStorage.setItem('email', credentials.username);
 
         // Redirigir al usuario al dashboard
-        this.router.navigate(['/seccioncrear']);
+        this.router.navigate(['/inicio']);
       },
       error: (err) => {
         console.error('Error en el inicio de sesión:', err);
