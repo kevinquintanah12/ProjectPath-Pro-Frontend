@@ -19,6 +19,10 @@ import { DashboardcpmComponent } from './dashboardcpm/dashboardcpm.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // Importa el módulo
 import { MatIconModule } from '@angular/material/icon';
+import { VisualizarproyectosComponent } from './visualizarproyectos/visualizarproyectos.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './services/auth.interceptor';
+import { CrearactividadesComponent } from './crearactividades/crearactividades.component';
 
 @NgModule({
 
@@ -43,11 +47,20 @@ import { MatIconModule } from '@angular/material/icon';
     CrearConArchivoComponent,
     DashboardcpmComponent,
     MatSidenavModule,
-    MatIconModule
+    MatIconModule,
+    VisualizarproyectosComponent,
+    CrearactividadesComponent
     
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+
     provideAnimationsAsync()
+    
   ],
   bootstrap: [AppComponent, ] // El componente standalone sigue siendo bootstrap
 })

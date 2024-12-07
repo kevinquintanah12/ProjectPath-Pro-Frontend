@@ -9,14 +9,28 @@
     <link rel="stylesheet" href="seccion-inicio.component.css">
 </head>
 <body>
-    <section class="seccion-inicio"> <!-- Cambié 'header' a 'seccion1' -->
+
+    <div class="sidenav">
+        <div class="user-info">
+            <h3 class="username">Correo: {{ user.email }}</h3>
+        </div>
+
+        <!-- Botón Tabla de Proyectos -->
+        <button class="sidebar-button" (click)="proyectos()">Tabla de Proyectos</button>
+        <button class="sidebar-button" (click)="logout()">Cerrar sesión</button>
+    </div>
+    
+    <section class="seccion-inicio">
         <div class="logo-container">
             <h1 class="logo-text">ProjectPath <span>Pro</span></h1>
         </div>
-        
     </section>
 
+   
 
-    <app-seccion-crear *ngIf="showCrearDesdeCero"></app-seccion-crear>
 </body>
 </html>
+ <!-- Estos componentes estarán abajo -->
+ <div class="component-container">
+    <app-seccion-crear></app-seccion-crear>
+</div>
