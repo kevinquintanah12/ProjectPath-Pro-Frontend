@@ -5,79 +5,85 @@ import { CommonModule } from '@angular/common';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { TokenService } from '../services/TokenService';
+import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule]
+  imports: [CommonModule, ReactiveFormsModule, LoadingComponent],
 })
 export class LoginComponent {
   loginForm: FormGroup;
   error: string = '';
-  processing: boolean = false;
+  processing: boolean = false; // Indica si la pantalla de carga está activa
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private router: Router,
-    private tokenService: TokenService // Agregado aquí
+    private tokenService: TokenService
   ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
-  /**
-   * Verifica si un campo tiene errores después de interactuar con él.
-   * @param control FormControl
-   * @returns boolean
-   */
   checkField(control: any): boolean {
     return control?.invalid && control?.touched;
   }
 
-  /**
-   * Inicia el proceso de inicio de sesión
-   */
   onSubmitButtonClicked() {
     this.error = '';
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
     }
-
-    this.processing = true;
-
+  
+    this.processing = true; // Activa la pantalla de carga
+  
     const credentials = this.loginForm.value;
-
+  
     this.userService.tokenAuth(credentials).subscribe({
       next: (response) => {
-        console.log('Respuesta completa del backend:', response);
-
-        // Guardar el token en el TokenService
+        console.log('Respuesta completa del backend (Token):', response);
+  
+        // Almacena el token y el ID del usuario en localStorage
         this.tokenService.setToken(response.access_token);
-        this.tokenService.setToken(response.access_token); // Guardar el token en TokenService
-
-        // Guardar el token y el email en localStorage
-        localStorage.setItem('authToken', response.access_token); // Guardar el token con la clave authToken
-        
-        // Guardar el email en localStorage
+        localStorage.setItem('authToken', response.access_token);
         localStorage.setItem('email', credentials.username);
-
-        // Redirigir al usuario al dashboard
-        this.router.navigate(['/inicio']);
+  
+        // Llamar al servicio para obtener información del usuario por email
+        this.userService.getUserByEmail(credentials.username).subscribe({
+          next: (userResponse) => {
+            console.log('Servicio getUserByEmail llamado exitosamente.');
+            console.log('ID del usuario devuelto:', userResponse.id);
+  
+            // Almacenar el ID del usuario en localStorage
+            localStorage.setItem('userId', userResponse.id.toString());  
+            // Redirigir a la página de inicio
+            this.router.navigate(['/inicio']);
+          },
+          error: (err) => {
+            console.error('Error al obtener el usuario por email:', err);
+            this.error = 'No se pudo obtener la información del usuario.';
+          },
+          complete: () => {
+            this.processing = false; // Desactiva la pantalla de carga al finalizar
+          },
+        });
       },
       error: (err) => {
         console.error('Error en el inicio de sesión:', err);
         this.error = 'Usuario o contraseña incorrectos.';
-        this.processing = false;
+        this.processing = false; // Desactiva la pantalla de carga en caso de error
       },
       complete: () => {
-        this.processing = false;
-      }
+        this.processing = false; // Desactiva la pantalla de carga al finalizar
+      },
     });
   }
+  
 }

@@ -1,24 +1,42 @@
+<link
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet"
+/>
+
 <section class="project-table">
-    <h2>Tus Proyectos</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let proyecto of proyectos">
-          <td>{{ proyecto.id }}</td>
-          <td>{{ proyecto.nombre }}</td>
-          <td>{{ proyecto.descripcion }}</td>
-          <td>
-            <button (click)="irAProyecto(proyecto.id)">Ver Proyecto</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-  
+  <h2>Tus Proyectos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let proyecto of proyectos">
+        <td>{{ proyecto.id }}</td>
+        <td>{{ proyecto.name }}</td>
+        <td>{{ proyecto.description }}</td>
+        <td>
+
+          <button 
+            (click)="irAProyecto(proyecto.id!)" 
+            [disabled]="proyecto.id === undefined">
+            Ver Proyecto
+          </button>
+
+          <!-- Botón de edición con un ícono de lápiz -->
+            <button 
+            class="edit-button" 
+            title="Editar" 
+            (click)="editarProyecto(proyecto.id)">
+            
+            <span class="material-icons">edit</span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

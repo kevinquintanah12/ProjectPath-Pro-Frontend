@@ -13,4 +13,7 @@
       <button type="submit" [disabled]="!projectForm.valid">Continuar</button>
     </form>
   </div>
+  <div *ngIf="processing" class="middle">
+    <div class="loader">creando proyecto...</div>
+</div>
   

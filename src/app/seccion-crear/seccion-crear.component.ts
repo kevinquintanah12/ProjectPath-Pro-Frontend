@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   selector: 'app-seccion-crear',

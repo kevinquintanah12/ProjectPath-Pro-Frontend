@@ -1,15 +1,20 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import * as XLSX from 'xlsx';
+import { LoadingComponent } from '../loading/loading.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-crearproyecto',
   standalone: true,
   templateUrl: './crearproyecto.component.html',
-  styleUrls: ['./crearproyecto.component.css']
+  styleUrls: ['./crearproyecto.component.css'],
+  imports: [ CommonModule],
+
 })
 export class CrearproyectoComponent {
   selectedFile: File | null = null;
+  processing: boolean = false; // Indica si la pantalla de carga está activa
 
   constructor(private router: Router) {}
 
@@ -19,6 +24,9 @@ export class CrearproyectoComponent {
     if (file) {
       this.selectedFile = file;
       console.log('Archivo seleccionado:', this.selectedFile);
+
+      // Mostrar la pantalla de carga mientras se procesa el archivo
+      this.processing = true;
 
       // Leer el archivo Excel y convertirlo en JSON
       const reader = new FileReader();
@@ -36,8 +44,14 @@ export class CrearproyectoComponent {
         // Guardar los datos en localStorage
         localStorage.setItem('excelData', JSON.stringify(jsonData));
 
-        // Redirigir al componente 'CrearConArchivo' y pasar el JSON de los datos del archivo Excel
-        this.router.navigate(['/crearconarchivo']);
+        // Simular el tiempo de procesamiento (ej. 4 segundos de carga)
+        setTimeout(() => {
+          // Desactivar la pantalla de carga después de 4 segundos
+          this.processing = false;
+
+          // Redirigir al componente 'CrearConArchivo' y pasar el JSON de los datos del archivo Excel
+          this.router.navigate(['/crearconarchivo']);
+        }, 9000); // Aquí puedes poner el tiempo en milisegundos (4000 ms = 4 segundos)
       };
 
       reader.readAsArrayBuffer(file); // Usar 'readAsArrayBuffer' para la lectura correcta

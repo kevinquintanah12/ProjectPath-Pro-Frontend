@@ -5,14 +5,23 @@ import { SeccionInicioComponent } from './seccion-inicio/seccion-inicio.componen
 import { MatToolbarModule } from '@angular/material/toolbar'; // Importa MatToolbarModule
 import { HttpClientModule } from '@angular/common/http';
 import { SeccionCrearComponent } from './seccion-crear/seccion-crear.component'
+import { LoadingService } from './loading.service';
+import { Observable } from 'rxjs';
+import { LoadingComponent } from './loading/loading.component'; // Importa el componente de carga
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html', // Usa un archivo HTML separado
   styleUrls: ['./app.component.css'], // Usa un archivo CSS separado
-  imports: [RouterOutlet, SeccionInicioComponent, MatToolbarModule, HeaderComponent, HttpClientModule, SeccionCrearComponent]
+  imports: [CommonModule, RouterOutlet, SeccionInicioComponent, MatToolbarModule, HeaderComponent, HttpClientModule, SeccionCrearComponent, LoadingComponent]
 })
 export class AppComponent {
-  title = 'CPM System';
-}
+  loading$: Observable<boolean>;
+
+  constructor(private loadingService: LoadingService) {
+    this.loading$ = this.loadingService.loading$;
+  }
+}   
+

@@ -56,47 +56,19 @@ export class UserService {
  * Get user by email with token authentication
  * @param email User's email
  */
-  getUserByEmail(email: string): Observable<User> {
-    const url = `${this.apiUserUrl}/by-email?email=${email}`;
-    const token = this.tokenService.getToken(); // Obtener el token desde TokenService
-    
-    if (!token) {
-      console.error('Token is missing or invalid');
-      return throwError('Token is missing or invalid');
-    }
-  
-    // Configura los encabezados exactamente igual que en la solicitud curl
-    let headers = new HttpHeaders()
-      .set('Authorization', 'Bearer ' + token)
-      .set('Origin', 'http://localhost:4200')   // Similar a -H "Origin: http://localhost:4200"
-      .set('Accept', 'application/json');        // Similar a -H "Accept: application/json"
-  
-    console.log('Headers:', headers);  // Verifica los encabezados en la consola
-  
-    console.log('Making request to URL:', url);  // Imprimir la URL completa y otros datos
-  
-    // Asegúrate de enviar credenciales si es necesario
-    return this.http.get<any>(url, { headers, withCredentials: true }).pipe(
-      tap(response => {
-        // Si la solicitud es exitosa, imprimir la respuesta
-        console.log('Response from backend:', JSON.stringify(response, null, 2));
-      }),
-      catchError((error) => {
-        // Si ocurre un error, imprimir más detalles sobre el error
-        console.error('Error in request:', error);
-        if (error.status === 0) {
-          console.error('Backend is not responding or CORS issue');
-        } else {
-          console.error(`Error status: ${error.status}, Error message: ${error.message}`);
-        }
-        return throwError(error); // Lanzar el error para que sea manejado por el suscriptor
-      })
-    );
-  }
-  
-  
-  
-  
+getUserByEmail(email: string): Observable<User> {
+  const url = `${this.apiUserUrl}/by-email?email=${email}`;
+  const token = this.tokenService.getToken(); // Obtener el token desde TokenService
+
+  // Configura los encabezados usando el nuevo formato
+  const headers = new HttpHeaders({
+    'Authorization': token ? `Bearer ${token}` : ''
+  });
+
+  return this.http.get<User>(url, { headers });
+}
+
+
   
 
   /**

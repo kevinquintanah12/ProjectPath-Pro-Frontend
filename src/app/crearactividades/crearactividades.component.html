@@ -1,96 +1,71 @@
 <div class="container">
-    <!-- Formulario -->
-    <div class="form-container">
-      <form [formGroup]="activityForm" (ngSubmit)="saveActivity()">
-        <!-- Nombre -->
-        <div>
-          <label for="name">Nombre</label>
-          <input id="name" formControlName="name" type="text" placeholder="Nombre de la actividad" />
-        </div>
-  
-        <!-- Etiqueta -->
-        <div>
-          <label for="label">Etiqueta</label>
-          <input id="label" formControlName="label" type="text" placeholder="Etiqueta" />
-        </div>
-  
-        <!-- Predecesores -->
-        <div>
-          <label for="predecessors">Predecesores</label>
-          <input id="predecessors" formControlName="predecessors" type="text" placeholder="A,B,C" />
-        </div>
-  
-        <!-- Duración -->
-        <div>
-          <label for="daysDuration">Duración (días)</label>
-          <input id="daysDuration" formControlName="daysDuration" type="number" placeholder="Duración en días" />
-        </div>
-  
-        <!-- Inicio Cercano -->
-        <div>
-          <label for="closeStart">Inicio Cercano</label>
-          <input id="closeStart" formControlName="closeStart" type="number" placeholder="Inicio cercano (días)" />
-        </div>
-  
-        <!-- Inicio Lejano -->
-        <div>
-          <label for="distantStart">Inicio Lejano</label>
-          <input id="distantStart" formControlName="distantStart" type="number" placeholder="Inicio lejano (días)" />
-        </div>
-  
-        <!-- Fin Cercano -->
-        <div>
-          <label for="closeFinish">Fin Cercano</label>
-          <input id="closeFinish" formControlName="closeFinish" type="number" placeholder="Fin cercano (días)" />
-        </div>
-  
-        <!-- Fin Lejano -->
-        <div>
-          <label for="distantFinish">Fin Lejano</label>
-          <input id="distantFinish" formControlName="distantFinish" type="number" placeholder="Fin lejano (días)" />
-        </div>
-  
-        <!-- Holgura -->
-        <div>
-          <label for="slack">Holgura</label>
-          <input id="slack" formControlName="slack" type="number" placeholder="Holgura (días)" />
-        </div>
-  
-        <!-- Botón de Guardar -->
-        <button type="submit" [disabled]="!activityForm.valid">Guardar Actividad</button>
-      </form>
-    </div>
-  
-    <!-- Tabla de actividades guardadas -->
-    <div class="excel-preview" *ngIf="activities.length > 0">
-      <table class="excel-table">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Etiqueta</th>
-            <th>Predecesores</th>
-            <th>Duración</th>
-            <th>Inicio Cercano</th>
-            <th>Inicio Lejano</th>
-            <th>Fin Cercano</th>
-            <th>Fin Lejano</th>
-            <th>Holgura</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let activity of activities">
-            <td>{{ activity.name }}</td>
-            <td>{{ activity.label }}</td>
-            <td>{{ activity.predecessors }}</td>
-            <td>{{ activity.daysDuration }}</td>
-            <td>{{ activity.closeStart }}</td>
-            <td>{{ activity.distantStart }}</td>
-            <td>{{ activity.closeFinish }}</td>
-            <td>{{ activity.distantFinish }}</td>
-            <td>{{ activity.slack }}</td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="form-container">
+    <form [formGroup]="activityForm" (ngSubmit)="saveActivity()">
+      <div>
+        <label for="name">Nombre</label>
+        <input id="name" formControlName="name" type="text" placeholder="Nombre de la actividad" />
+      </div>
+
+      <div>
+        <label for="predecessors">Predecesores</label>
+        <input id="predecessors" formControlName="predecessors" type="text" placeholder="A,B,C" />
+      </div>
+
+      <div>
+        <label for="daysDuration">Duración (días)</label>
+        <input id="daysDuration" formControlName="daysDuration" type="number" placeholder="Duración en días" />
+      </div>
+
+      <div *ngIf="predecessorsAlert" class="alert alert-warning">
+        Debes ingresar al menos un predecesor válido (A,B,AB, etc.).
+      </div>
+
+      <button type="submit" [disabled]="!activityForm.valid">Guardar Actividad</button>
+    </form>
+  </div>
+
+  <div class="excel-preview" *ngIf="activities.length > 0">
+    <table class="excel-table">
+      <thead>
+        <tr>
+          <th>Etiqueta</th>
+          <th>Nombre</th>
+          <th>Predecesores</th>
+          <th>Duración</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let activity of activities">
+          <td>{{ activity.label }}</td>
+          <td>{{ activity.name }}</td>
+          <td>{{ activity.predecessors }}</td>
+          <td>{{ activity.daysDuration }}</td>
+          <td>
+            <button (click)="editActivity(activity)">Editar</button>
+            <button (click)="deleteActivity(activity.id!)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="activities.length > 0" class="continue-button">
+      <button (click)="onContinue()">Continuar</button>
     </div>
   </div>
-  
+</div>
+<div *ngIf="processing" class="middle">
+<div class="spinnerContainer">
+  <div class="spinner"></div>
+  <div class="loader">
+    <p>calculando</p>
+    <div class="words">
+      <span class="word">ruta critica</span>
+      <span class="word">diagrama</span>
+      <span class="word">actividades</span>
+      <span class="word">tiempos</span>
+      <span class="word">etiquetas</span>
+    </div>
+  </div>
+</div>
+</div>
+

@@ -176,3 +176,38 @@ label[for="file-upload"]:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
+
+.middle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff; /* Fondo completamente blanco */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Para asegurarte de que esté sobre todo */
+  }
+
+
+/* From Uiverse.io by omar-alghaish */ 
+@keyframes animate8345 {
+    0%,100% {
+      filter: hue-rotate(0deg);
+    }
+  
+    50% {
+      filter: hue-rotate(360deg);
+    }
+  }
+  
+  .loader {
+    color: rgb(0, 0, 0);
+    background: linear-gradient(to right, #2d60ec, #3ccfda);
+    font-size: 30px;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    animation: animate8345 9s linear infinite;
+    font-weight: bold;
+  }
