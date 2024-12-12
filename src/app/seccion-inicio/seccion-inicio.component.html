@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjectPath Pro</title>
+    
+    <!-- Enlace de Google Fonts -->
+    <link rel="stylesheet" href="seccion-inicio.component.css">
+</head>
+<body>
+
+    <div class="sidenav">
+        <div class="user-info">
+            <h3 class="username">Correo: {{ user.email }}</h3>
+        </div>
+
+        <!-- Botón Tabla de Proyectos -->
+        <button class="sidebar-button" (click)="proyectos()">Tabla de Proyectos</button>
+        <button class="sidebar-button" (click)="logout()">Cerrar sesión</button>
+    </div>
+    
+    <section class="seccion-inicio">
+        <div class="logo-container">
+            <h1 class="logo-text">ProjectPath <span>Pro</span></h1>
+        </div>
+    </section>
+
+   
+
+</body>
+</html>
+ <!-- Estos componentes estarán abajo -->
+ <div class="component-container">
+    <app-seccion-crear></app-seccion-crear>
+</div>

@@ -1,0 +1,156 @@
+/* Contenedor del formulario */
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One:wght@400&display=swap');
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(145deg, #007bff, #0056b3); /* Fondo azul degradado */
+    backdrop-filter: blur(10px);
+    font-family: 'Rubik Mono One', sans-serif;
+
+  }
+  
+  /* Formulario estilo glass */
+  form {
+    background: rgba(255, 255, 255, 0.1); /* Transparencia para Glassmorphism */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Sombra elegante */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); /* Compatibilidad Safari */
+    border-radius: 12px;
+    padding: 20px 30px;
+    width: 400px;
+    color: white;
+    font-family: 'Rubik Mono One', sans-serif;
+    animation: fadeIn 1s ease-in-out;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Estilo para etiquetas */
+  form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    animation: slideIn 1s ease-in-out;
+  }
+  
+  /* Estilo para entradas de texto */
+  form input,
+  form textarea {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  form input:focus,
+  form textarea:focus {
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
+  }
+  
+  /* Estilo para el botón */
+  form button {
+    width: 100%;
+    padding: 10px 15px;
+    font-family: 'Rubik Mono One', sans-serif;
+
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+    animation: bounce 1.5s infinite ease-in-out;
+  }
+  
+  form button:hover {
+    background: rgba(0, 123, 255, 0.8);
+    transform: scale(1.05);
+  }
+  
+  form button:disabled {
+    cursor: not-allowed;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Animación de fade-in */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Animación para las etiquetas */
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Animación para el botón */
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+
+.middle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff; /* Fondo completamente blanco */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Para asegurarte de que esté sobre todo */
+}
+
+
+/* From Uiverse.io by omar-alghaish */ 
+@keyframes animate8345 {
+  0%,100% {
+    filter: hue-rotate(0deg);
+  }
+
+  50% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+.loader {
+  color: rgb(0, 0, 0);
+  background: linear-gradient(to right, #2d60ec, #3ccfda);
+  font-size: 30px;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  animation: animate8345 9s linear infinite;
+  font-weight: bold;
+}
+
+  
