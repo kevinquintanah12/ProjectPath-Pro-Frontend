@@ -1,0 +1,136 @@
+/* header.component.css */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;300;400;500;700;900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One:wght@400&display=swap');
+/* Estilos para el body */
+/* Estilo general para el body */
+body {
+    margin: 0;
+    font-family: 'Passion One', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:                        relative;
+    background: linear-gradient(135deg, #1444c7, #59aaf5);
+    background-size: 400% 400%;
+    animation: gradient-animation 10s ease infinite;
+}
+
+/* Animación de cambio de degradado */
+@keyframes gradient-animation {
+    25% {
+        background-position: 50% 50%;
+        background: linear-gradient(135deg, #0d99da, #0536d6);
+    }
+    50% {
+        background-position: 100% 50%;
+        background: linear-gradient(135deg, #23cbf5, #044cd3);
+    }
+    100% {
+        background-position: 0% 50%;
+        background: linear-gradient(135deg, #0e6ab6, #00c3ff);
+    }
+}
+/* Sidebar en la esquina */
+.sidenav {
+    position: fixed;
+    top: 90px; /* Distancia desde la parte superior */
+    right: 20px; /* Distancia desde el borde derecho */
+    width: 230px; /* Hacerlo más estrecho */
+    background: rgba(255, 255, 255, 0.1); /* Fondo transparente */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    color: #fff;
+    padding: 15px;
+    box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 16px; /* Esquinas redondeadas */
+}
+
+/* Información del usuario */
+.user-info {
+    margin-bottom: 15px; /* Reduce el espacio entre la información */
+    color: #fff;
+}
+
+.username {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px; /* Fuente más pequeña */
+    font-weight: bold;
+    line-height: 1.2; /* Reduce el espacio entre líneas */
+}
+
+/* Estilo para el botón en el sidebar */
+.sidebar-button {
+    font-family: 'DM Sans', sans-serif;
+
+    width: 100%;
+    padding: 10px; /* Hace que los botones sean más pequeños */
+    background-color: #103764;
+    color: #fff;
+    border: none;
+    font-size: 13px; /* Fuente más pequeña */
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 8px; /* Añade espacio entre los botones */
+}
+
+.sidebar-button:hover {
+    background-color: #35e0d7;
+}
+
+
+/* Estilos para el logo y el contenido */
+.dashboard-container {
+    flex: 1;
+    padding: 20px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+/* Contenedor para el logo */
+.logo-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Ocupa toda la altura del viewport */
+}
+
+/* Logo */
+.logo-text {
+    font-size: 5vw;
+    max-font-size: 50px;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: 'Rubik Mono One', sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 
+        0 0 10px rgb(30, 71, 204), 
+        0 0 20px rgb(15, 70, 253), 
+        0 0 30px rgba(0, 81, 255, 0.4), 
+        2px 2px 5px rgba(1, 132, 255, 0.7),  
+        3px 3px 10px rgb(0, 45, 82);
+}
+
+/* Media Queries para dispositivos pequeños */
+@media (max-width: 600px) {
+    .logo-text {
+        font-size: 6vw; /* Aumenta el tamaño para pantallas más pequeñas */
+    }
+}
+
+/* Animación de pulso */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 6px 20px rgba(1, 41, 48, 0.7), inset 0 0 15px rgba(0, 255, 255, 0.5);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(1, 33, 39, 0.8), inset 0 0 20px rgba(0, 255, 255, 0.7);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 6px 20px rgb(255, 255, 255), inset 0 0 15px rgba(0, 255, 255, 0.5);
+    }
+}

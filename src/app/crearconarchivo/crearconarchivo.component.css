@@ -1,0 +1,316 @@
+/* Importar la fuente */
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One:wght@400&display=swap');
+
+/* Estilo global del contenedor principal */
+.container {
+  display: flex;
+  
+  flex-direction: row; /* Alinea los elementos en fila */
+  gap: 20px; /* Espacio entre las columnas */
+  margin: 100px auto 0; /* Ajuste para empujar todo un poco más hacia abajo */
+  padding: 20px;
+  font-family: 'Rubik Mono One', sans-serif;
+  max-width: 1000px;
+}
+
+/* Contenedor del formulario */
+.form-container {
+  flex: 1; /* Ocupa el 50% del espacio */
+  padding: 20px;
+  background-color: rgb(2, 158, 98); /* Fondo semi-transparente */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px); /* Glassmorphism */
+}
+
+/* Estilo para la tabla de vista previa */
+.excel-table {
+  width: 100%;
+  font-family: 'Rubik Mono One', sans-serif;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.1); /* Fondo semi-transparente */
+  border-radius: 8px;
+  backdrop-filter: blur(10px); /* Efecto Glassmorphism */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.excel-table th,
+.excel-table td {
+  border: 1px solid #d3d3d3;
+  padding: 8px;
+  text-align: center;
+}
+
+.excel-table th {
+  background-color: rgba(226, 240, 217, 0.7); /* Verde claro para las cabeceras */
+  color: #333;
+  font-weight: bold;
+}
+
+.excel-table tr:nth-child(even) {
+  background-color: rgba(249, 249, 249, 0.7); /* Fondo blanco para las filas pares */
+}
+
+.excel-table tr:hover {
+  background-color: rgba(241, 241, 241, 0.8); /* Resaltar fila al pasar el ratón */
+}
+
+/* Estilo del botón de continuar */
+button {
+  background-color: #4CAF50; /* Verde */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049; /* Cambio de color al pasar el ratón */
+}
+
+button:disabled {
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+}
+
+/* Estilo del formulario */
+form {
+  background: rgba(255, 255, 255, 0.1); /* Transparencia para Glassmorphism */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Sombra elegante */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Compatibilidad Safari */
+  border-radius: 12px;
+  padding: 20px 30px;
+  width: 400px;
+  color: white;
+  font-family: 'Rubik Mono One', sans-serif;
+  animation: fadeIn 1s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Estilo para etiquetas */
+form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  animation: slideIn 1s ease-in-out;
+}
+
+/* Estilo para entradas de texto */
+form input,
+form textarea {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  outline: none;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+form input:focus,
+form textarea:focus {
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
+}
+
+
+.middle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff; /* Fondo completamente blanco */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Para asegurarte de que esté sobre todo */
+}
+
+/* Animación para el botón */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+
+/* From Uiverse.io by Chriskoziol */ 
+.spinnerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spinner {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  border: 4px solid #0000;
+  border-radius: 50%;
+  border-right-color: #299fff;
+  animation: tri-spinner 1s infinite linear;
+}
+
+.spinner::before,
+.spinner::after {
+  content: "";
+  grid-area: 1/1;
+  margin: 2px;
+  border: inherit;
+  border-radius: 50%;
+  animation: tri-spinner 2s infinite;
+}
+
+.spinner::after {
+  margin: 8px;
+  animation-duration: 3s;
+}
+
+@keyframes tri-spinner {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.loader {
+  color: #4a4a4a;
+  font-family: "Poppins",sans-serif;
+  font-weight: 500;
+  font-size: 25px;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 40px;
+  padding: 10px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 8px;
+}
+
+.words {
+  overflow: hidden;
+}
+
+.word {
+  display: block;
+  height: 100%;
+  padding-left: 6px;
+  color: #299fff;
+  animation: cycle-words 5s infinite;
+}
+
+@keyframes cycle-words {
+  10% {
+    -webkit-transform: translateY(-105%);
+    transform: translateY(-105%);
+  }
+
+  25% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+
+  35% {
+    -webkit-transform: translateY(-205%);
+    transform: translateY(-205%);
+  }
+
+  50% {
+    -webkit-transform: translateY(-200%);
+    transform: translateY(-200%);
+  }
+
+  60% {
+    -webkit-transform: translateY(-305%);
+    transform: translateY(-305%);
+  }
+
+  75% {
+    -webkit-transform: translateY(-300%);
+    transform: translateY(-300%);
+  }
+
+  85% {
+    -webkit-transform: translateY(-405%);
+    transform: translateY(-405%);
+  }
+
+  100% {
+    -webkit-transform: translateY(-400%);
+    transform: translateY(-400%);
+  }
+}
+
+
+/* Estilo para el botón del formulario */
+form button {
+  width: 100%;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+  animation: bounce 1.5s infinite ease-in-out;
+}
+
+form button:hover {
+  background: rgba(0, 123, 255, 0.8);
+  transform: scale(1.05);
+}
+
+form button:disabled {
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Animación de fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animación para las etiquetas */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animación para el botón */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}

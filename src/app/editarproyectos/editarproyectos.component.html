@@ -1,0 +1,90 @@
+<div>
+  <h2>Editar Proyecto</h2>
+  <div class="navigation-buttons">
+    <button (click)="regresar()">Regresar</button>
+    <button (click)="onContinue()">Generar Diagrama</button>
+
+  </div>
+
+  <div class="container">
+    <!-- Formulario de Proyecto -->
+    <div class="form-container">
+      <form>
+        <label for="name">Nombre del Proyecto</label>
+        <input id="name" [(ngModel)]="proyecto.name" name="name" required />
+
+        <label for="description">Descripción</label>
+        <textarea id="description" [(ngModel)]="proyecto.description" name="description" required></textarea>
+
+        <button (click)="editarProyecto()">Guardar Cambios</button>
+      </form>
+    </div>
+
+    <!-- Tabla de Actividades -->
+    <div class="activities-container">
+      <h3>Actividades</h3>
+      <table class="excel-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Predecesores</th>
+            <th>Duración (Días)</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let actividad of actividades">
+            <td>{{ actividad.name }}</td>
+            <td>{{ actividad.predecessors }}</td>
+            <td>{{ actividad.daysDuration }}</td>
+            <td>
+              <button (click)="editarActividad(actividad)">Editar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Formulario de Edición de Actividad -->
+  <div *ngIf="actividadEditada" class="modal-backdrop">
+    <div class="modal">
+      <h3>Editar Actividad</h3>
+      <form>
+        <label for="actividad-name">Nombre de la Actividad</label>
+        <input id="actividad-name" [(ngModel)]="actividadEditada.name" name="actividad-name" required />
+
+        <label for="actividad-predecessors">Predecesores</label>
+        <input id="actividad-predecessors" [(ngModel)]="actividadEditada.predecessors" name="actividad-predecessors" required />
+
+        <label for="actividad-days">Duración (Días)</label>
+        <input id="actividad-days" type="number" [(ngModel)]="actividadEditada.daysDuration" name="actividad-days" required />
+
+        <div class="modal-actions">
+          <button (click)="guardarActividad()">Guardar Cambios</button>
+          <button (click)="cerrarModal()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <ng-template #loading>
+    <p>Cargando proyecto...</p>
+  </ng-template>
+  <div *ngIf="processing" class="middle">
+    <div class="spinnerContainer">
+      <div class="spinner"></div>
+      <div class="loader">
+        <p>Calculando</p>
+        <div class="words">
+          <span class="word">ruta crítica</span>
+          <span class="word">diagrama</span>
+          <span class="word">actividades</span>
+          <span class="word">tiempos</span>
+          <span class="word">etiquetas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

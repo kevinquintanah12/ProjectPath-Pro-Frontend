@@ -1,0 +1,56 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #drawer mode="side" [(opened)]="isDrawerOpen">
+    <h3>Proyectos Cargados Anteriormente</h3>
+    <div class="project-list">
+      <div *ngFor="let proyecto of proyectos" class="project-item">
+        <h3>{{ proyecto.name }}</h3>
+        <button 
+            (click)="irAProyecto(proyecto.id!)" 
+            [disabled]="proyecto.id === undefined">
+            Ver Proyecto
+        </button>
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <!-- Botón para abrir/cerrar el sidenav -->
+  <button
+    mat-icon-button
+    (click)="isDrawerOpen = !isDrawerOpen"
+    class="menu-button"
+  >
+    <mat-icon>{{ isDrawerOpen ? 'close' : 'menu' }}</mat-icon>
+  </button>
+
+  <!-- Contenido principal -->
+  <div class="dashboard-container">
+    <h1 class="title">CPM DASHBOARD</h1>
+
+    <!-- Sección de información del cálculo -->
+    
+
+    <!-- Mensaje de error -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Sección de generación de diagramas -->
+    <div *ngIf="diagramBase64; else noDiagram">
+      <img [src]="diagramBase64" alt="Diagrama de red y ruta crítica" style="max-width: 100%; height: auto;" />
+    </div>
+    <ng-template #noDiagram>
+      <p>Cargando Diagrama....</p>
+    </ng-template>
+    
+
+    <!-- Botón para generar el diagrama -->
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="calculations"
+      (click)="createDiagram(calculations.projectId)"
+    >
+      Generar Diagrama
+    </button>
+  </div>
+</mat-sidenav-container>

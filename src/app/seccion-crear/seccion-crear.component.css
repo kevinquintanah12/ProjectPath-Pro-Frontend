@@ -1,0 +1,145 @@
+
+/* header.component.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One:wght@400&display=swap');
+/* Estilos generales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Rubik Mono One', sans-serif;
+    background-color: #02172b;
+    color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Estilo de la pantalla de carga */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegúrate de que esté encima de otros contenidos */
+}
+
+.loader-container {
+    width: 200px;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    --background: linear-gradient(135deg, #23C4F8, #275EFE);
+    --shadow: rgba(39, 94, 254, 0.28);
+    --text: #6C7486;
+    --page: rgba(255, 255, 255, 0.36);
+    --page-fold: rgba(255, 255, 255, 0.52);
+    --duration: 3s;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.loader div ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+}
+
+.loader div ul li {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: var(--page);
+    opacity: 0;
+    animation: 3s ease infinite;
+}
+
+.loader div ul li:first-child {
+    opacity: 1;
+}
+
+/* Animación personalizada */
+@keyframes page-2 {
+    0% {
+        transform: rotateY(180deg);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    35%, 100% {
+        opacity: 0;
+    }
+}
+
+
+.seccion-crear {
+    text-align: center;
+    animation: slideDown 1s ease-out; /* Animación */
+}
+
+.logo-container {
+    margin-bottom: 20px;
+}
+
+.logo-text {
+    font-family: 'Rubik Mono One', sans-serif;
+
+    font-size: 3rem;
+    font-weight: bold;
+    color: #f4f4f4;
+}
+
+.logo-text span {
+    color: #ff9500; /* Acento en color naranja */
+}
+
+.cta-text {
+    font-size: 1.2rem;
+    margin: 20px 0;
+    color: #dcdcdc;
+}
+
+.btn-crear-proyecto {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    background-color: #090627;
+    border: 2px solid #ff9500;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.btn-crear-proyecto:hover {
+    background-color: #ff9500;
+    color: #1c1c1e;
+    transform: scale(1.05);
+}
+
+/* Animación de bajada */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
